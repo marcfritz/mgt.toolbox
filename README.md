@@ -13,3 +13,8 @@ License
 
 Read the [license file] (https://github.com/2160px/mgt.toolbox/blob/master/LICENSE).
 > Code is released under the MIT License (MIT)
+
+How To Use
+------
+
+Read the [How To Use](https://github.com/2160px/mgt.toolbox/wiki/How-To-Use) for more informations.
