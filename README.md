@@ -1,6 +1,6 @@
 # mgt.toolbox
 
-This script should help you manage your network / server infrastructure.
+These scripts should help you manage your network / server infrastructure.
 
 Usage
 ------
