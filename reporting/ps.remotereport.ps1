@@ -22,10 +22,17 @@ $px_report = @()
 
 ##################### variable definition #####################
 
+# example: $Global:px_from = "Sender <sender@domain.com>"
 $Global:px_from = $REPLACE
+# example: $Global:px_to = "Receipient <receipient@domain.com>"
 $Global:px_to = $REPLACE
 
-$Global:px_subject = "PowerShell report from $env:USERDNSDOMAIN"
+#mfr
+# get DNS-Domain
+$px_dnsdomain = (Get-WmiObject Win32_ComputerSystem).Domain
+$Global:px_subject = "PowerShell report from $env:COMPUTERNAME.$px_dnsdomain"
+
+#$Global:px_subject = "PowerShell report from $env:USERDNSDOMAIN"
 $Global:px_body = "There is a new PowerShell report from $env:COMPUTERNAME.$env:USERDNSDOMAIN. $Global:px_time"
 
 $Global:px_smtpserver = $REPLACE
@@ -112,7 +119,7 @@ foreach($srv in $px_srv){
 
 #Display the table
 cls
-$Global:px_table | Select-Object Date, Computer, LastBoot, HDDDevice, HDDFree, HDDSize, RAMFree, RAMSize | ConvertTo-Html -Head $px_head | set-content .\report.htm
-$Global:px_attachment = ".\report.htm"
+$Global:px_table | Select-Object Date, Computer, LastBoot, HDDDevice, HDDFree, HDDSize, RAMFree, RAMSize | ConvertTo-Html -Head $px_head | set-content .\$($px_row.Date)_report.htm
+$Global:px_attachment = ".\$($px_row.Date)_report.htm"
 
 px-send
